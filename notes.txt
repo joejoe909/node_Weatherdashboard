@@ -8,3 +8,24 @@ $ git init
 
 good link on deploying to heroku
 https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true
+
+
+api testing code
+
+app.get('/api/test', (req, res) => {
+    return res.send(process.env.HERE_API_KEY);
+})
+
+// default URL for website
+app.use('/test', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/test.html'));
+    //__dirname : will resolve to your project folder.
+});
+
+
+// default URL for website
+app.use('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/public/indx.html'));
+    //__dirname : will resolve to your project folder.
+});
+

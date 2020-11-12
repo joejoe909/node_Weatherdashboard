@@ -1,28 +1,38 @@
-{{posted_stuff}}<br/>
+<div class="row m-0 p-0 setZ">
+    <div class="col-4 p-0 limit">
+        <div class="border border-dark">
+            <form class="form-inline">
+                <div class="form-group" style="width: 100%">
+                    <label for="citySearch" class="sr-only"></label>
+                    <input type="City Name" class="form-control" id="cityInpt" placeholder="City Name...">
+                    <button type="search" class="btn btn-dark m-4 " id="searchBtn">Search</button>
+                </div>
+            </form>
+        </div>
 
+        <table class="DarkCells">
+            <thead>
+                <tr>
+                    <th>History</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each city}}
+                <tr>
+                    <td>{{this}}</td>
+                </tr>
+                {{/each}}
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">{{ stock.companyName }} {{ stock.symbol }}</h1>
-        <strong>Latest Price:</strong> ${{stock.latestPrice}} <br />
-        <strong>Previous Close</strong> ${{stock.previousClose}} <br />
-        <strong>Previous Change</strong>{{stock.changePercent}} <br />
-        <strong>Market Cap: </strong>${{stock.marketCap}} <br />
-        <strong>YTD Change: </strong>${{stock.ytdChange}} <br />
-        <strong>52wk High: </strong>{{stock.week52High}} <br />
-        <strong>52wk Low:</strong>{{stock.week52Low}}<br />
+                </tr>
+            </tbody>
+            </tr>
+        </table>
     </div>
+
+    <div class="col-8 border border-dark">
+        <div class="container">
+            <h1 class="roboto">{{hbout1}}</h1>
+        </div>
+    </div>
+
 </div>
-
-
-
-
-
-
-
-<!--
-{{#each stock}}
-    {{@key}} | {{ this}} <br/>
-{{/each}} 
-
--->

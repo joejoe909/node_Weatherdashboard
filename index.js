@@ -1,5 +1,7 @@
 const http = require('http');
 const express = require('express');
+const exphbs = require('express-handlebars');
+const axios = require('axios');
 const path = require('path');
 require('dotenv').config();
 
@@ -10,26 +12,36 @@ app.use(express.static("public"));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 3002;
 
-app.get('/api/test', (req, res) => {
-    return res.send(process.env.HERE_API_KEY);
+app.engine('handlebars', exphbs({defaultLayout: "main"}));
+app.set('view engine', 'handlebars');
+
+//call the openweather api using a user provided city name - ToDo: nest this function.
+// axios({
+//     method: 'get',
+//     url: 'https://api.openweathermap.org/data/2.5/forecast?q=tucson&appid=' + process.env.OWK,
+//     responeType:'json'
+//     //`responseType` indicates the type of data that the server will respond with
+//     // options are: 'arraybuffer', 'document', 'json', 'text', 'stream'
+//     // browser only: 'blob'
+// }).then((response)=>{
+//     console.log(response);
+// })
+//Handle bar testing
+const HBtestString = "this is my initial test string for handlebar testing";
+const cityNames = [ 'New York', 'Paris', 'Los Angeles', 'Seattle', 'Portland', 'Chicago', 'Dallas', 'Mami', 'Dahli']
+
+
+app.get('/', (req, res)=>{
+    res.render('home', {
+        hbout1: HBtestString,
+        city: cityNames
+    });
 })
-
-// default URL for website
-app.use('/test', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/test.html'));
-    //__dirname : will resolve to your project folder.
-});
-
-
-// default URL for website
-app.use('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/indx.html'));
-    //__dirname : will resolve to your project folder.
-});
 
 
 const server = http.createServer(app);
 server.listen(PORT);
 
-console.debug("key is:" + process.env.HERE_API_KEY);
+app.use(express.static(path.join(__dirname, 'public')));
 console.debug('Server listening on port ' + PORT);
+

@@ -1,0 +1,90 @@
+table.DarkCells {
+  border: 2px solid #000000;
+  background-color: #212121;
+  width: 100.1%;
+  text-align: left;
+  text-indent: 5px;
+  border-collapse: collapse;
+}
+table.DarkCells td, table.DarkCells th {
+  border: 1px solid #000000;
+  padding: 3px 2px;
+}
+table.DarkCells tbody td {
+  font-size: 30px;
+  color: #FFFFFF;
+}
+table.DarkCells tr:nth-child(even) {
+  background: #363636;
+}
+table.DarkCells thead {
+  background: #000000;
+}
+table.DarkCells thead th {
+  font-size: 30px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #000000;
+}
+table.DarkCells thead th:first-child {
+  border-left: none;
+}
+
+table.DarkCells tfoot td {
+  font-size: 13px;
+}
+table.DarkCells tfoot .links {
+  text-align: right;
+}
+table.DarkCells tfoot .links a{
+  display: inline-block;
+  background: #FFFFFF;
+  color: #A40808;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+table.DarkCells tr:hover{
+  background-color: rgb(38, 51, 41);
+}
+
+.bgBlack{
+  background-color: black;
+  color: white;
+}
+
+
+
+.roboto{
+  font-family: 'Roboto', sans-serif;
+}
+
+.setZ{
+  z-index: -1;
+}
+/*
+.negLeft{
+  margin-left: -7px;
+  
+} */
+
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+/* table.DarkCells {
+  border: 2px solid #000000;
+  background-color: #212121;
+  width: 60%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.negLeft{
+  margin-left: -257px;
+  
+} */
+
+}
