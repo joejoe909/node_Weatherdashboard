@@ -23,7 +23,6 @@ module.exports = (app)=>{
         const city = req.params.city;
         cityNames.unshift(city)
         console.debug(city);
-        //URL for the weather forecast  
         const URL = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city + '&appid=' + process.env.OWK;
         let FDF, UV;
         let LAT, LON;
@@ -40,27 +39,13 @@ module.exports = (app)=>{
         const URLuv = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + LAT + "&lon=" + LON + '&appid=' + process.env.OWK;
         await Promise.all([ 
             axios.get(URLuv).then((response)=>{
-                // console.log(chalk.green('Data for UV Index'));  
-                // console.log(response.data);
-                // UV = JSON.stringify(response.data, null, 4)
                 UV = response.data
             })
         ]);
-
-       
-        // console.log("let look at our data....")
-        // console.log(FDF);
-        // console.log(UV);
-  
+    
         const wthr = [FDF , UV]
-        // console.log(wthr);
         console.log("did this happen?");
-        res.send(wthr);
-
-        // res.render('home',{
-        //     hbout1: 'that city string...',
-        //     city: cityNames
-        // })       
+        res.send(wthr);       
     })
 
    
