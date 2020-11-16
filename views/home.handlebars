@@ -10,7 +10,7 @@
             </form>
         </div>
 
-        <table class="DarkCells">
+        <table class="DarkCells" id="cityList">
             <thead>
                 <tr>
                     <th>History</th>
@@ -19,7 +19,7 @@
             <tbody>
                 {{#each city}}
                 <tr>
-                    <td>{{this}}</td>
+                    <td id={{this}}>{{this}}</td>
                 </tr>
                 {{/each}}
 
@@ -32,6 +32,10 @@
     <div class="col-8 border border-dark">
         <div class="container">
             <h1 class="roboto">{{hbout1}}</h1>
+            {{#each weather}}
+                <p>{{this}}</p>
+            {{/each}}
+           
         </div>
     </div>
 
