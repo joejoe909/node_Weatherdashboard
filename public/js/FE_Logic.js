@@ -1,29 +1,23 @@
 $(document).ready(function() { 
     console.log("loaded FE_Logic.js file...")
-     Handlebars.registerPartial("cityName", '{{name}}');
-     Handlebars.registerPartial("weather", '<{{tagName}}> {{name}} {{uvIndex}}</tagName>');
-
 
     function renderData(data){
         console.log(data)
         console.log(data[0].city.name); //geet the cityname
         console.log(data[1][0].value); //get the UV index
         document.getElementById('contentDiv').innerHTML = '';
-        
-        //const templateHolder = document.getElementById('weatherTemplate').innerHTML;
-        const myInfo = '<p>City {{name}} has a uvIndex of: {{uvIndex}} <p>';
+                
+        const myInfo = '{{name}} {{uvIndex}} {{testValue1}} {{testValue2}}';
         const template = Handlebars.compile(myInfo);
- 
-        // Handlebars.registerPartial("weather", '');
-        // Handlebars.registerHelper("weather", '<{{tagName}}> {{name}} {{uvIndex}}</tagName>');
 
         var wData = template({
            name: data[0].city.name,
-           uvIndex: data[1][0].value
+           uvIndex: data[1][0].value,
+           testValue1: 'testValue',
+           testValue2: 'testValue'
         });
 
         document.getElementById('contentDiv').innerHTML += wData;
-
     }
 
     function buildQueryURL(cityString){
