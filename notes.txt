@@ -29,3 +29,38 @@ app.use('/', function (req, res) {
     //__dirname : will resolve to your project folder.
 });
 
+
+
+some clean up from index.js
+
+//Handle bar testing
+// const HBtestString = "this is my initial test string for handlebar testing";
+// const cityNames = [ 'New York', 'Paris', 'Los Angeles', 'San Francisco', 'Seattle', 'Portland', 'Chicago', 'Dallas', 'Mami', 'Phoenix', 'Tucson', 'Nogales' ]
+
+// const test = ['test', 'test2', 'test3']
+
+//Require our routes.
+
+//Setup starter data.
+// app.get('/', (req, res)=>{
+//     res.render('home', {
+//         hbout1: HBtestString,
+//         city: cityNames,
+//     });
+// })
+
+
+
+//took this out of FE_Logic.js
+       var wData = template({
+           name: data[0].city.name,
+           country: data[0].city.country,
+           population: data[0].city.population,
+           uvIndex: data[1][0].value,
+           timezone: data[0].city.timezone 
+        });
+
+ const weather = '{{uvIndex}} {{country}}' + 
+        '{{population}} {{timezone}}';
+
+//const template = Handlebars.compile(weather);

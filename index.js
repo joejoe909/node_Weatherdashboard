@@ -4,6 +4,12 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 require('dotenv').config();
 
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, './views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials')
+})
+
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
@@ -15,22 +21,7 @@ const PORT = process.env.PORT || 3002;
 app.engine('handlebars', exphbs({defaultLayout: "main"}));
 app.set('view engine', 'handlebars');
 
-//Handle bar testing
-// const HBtestString = "this is my initial test string for handlebar testing";
-// const cityNames = [ 'New York', 'Paris', 'Los Angeles', 'San Francisco', 'Seattle', 'Portland', 'Chicago', 'Dallas', 'Mami', 'Phoenix', 'Tucson', 'Nogales' ]
-
-// const test = ['test', 'test2', 'test3']
-
-//Require our routes.
 require('./routes/api-routes')(app);
-//Setup starter data.
-// app.get('/', (req, res)=>{
-//     res.render('home', {
-//         hbout1: HBtestString,
-//         city: cityNames,
-//     });
-// })
-
 
 const server = http.createServer(app);
 server.listen(PORT);
