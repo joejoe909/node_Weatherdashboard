@@ -15,8 +15,8 @@ app.set('view enginer', 'handlebars');
 
 module.exports = (app)=>{
 
-    const HBtestString = "this is my initial test string for handlebar testing";
-    const cityNames = ['New York', 'Paris', 'Los Angeles', 'San Francisco', 'Seattle', 'Portland', 'Chicago', 'Dallas', 'Mami', 'Phoenix', 'Tucson', 'Nogales']
+    const HBtestString = "";
+    const cityNames = ['New York', 'Paris', 'Los Angeles', 'San Francisco', 'Seattle', 'Portland', 'Chicago', 'Dallas', 'Miami', 'Phoenix', 'Tucson', 'Nogales']
 
 
     app.get('/api/search/:city', async (req,res)=>{
@@ -45,7 +45,8 @@ module.exports = (app)=>{
     
         const wthr = [FDF , UV]
         console.log("did this happen?");
-        res.send(wthr);       
+        res.send(wthr);
+       
     })
 
    
@@ -57,10 +58,6 @@ module.exports = (app)=>{
         });
     })
 
-    app.get('/special', (reg, res)=>{
-        res.render('home', {
-            hbout1: "We not fuckin around no mo - Snazel D (from Snazel D and da Boyz)"
-        })
-    })
+ 
 }
 
