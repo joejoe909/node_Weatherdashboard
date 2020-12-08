@@ -7,8 +7,8 @@ $(document).ready(function() {
         console.log(data[1][0].value); //get the UV index
         document.getElementById('contentDiv').innerHTML = '';
                 
-        const myInfo = '{{name}} {{uvIndex}} {{testValue1}} {{testValue2}}';
-        const template = Handlebars.compile(myInfo);
+        const weather = '{{name}} {{uvIndex}} {{testValue1}} {{testValue2}}';
+        const template = Handlebars.compile(weather);
 
         var wData = template({
            name: data[0].city.name,
@@ -16,6 +16,8 @@ $(document).ready(function() {
            testValue1: 'testValue',
            testValue2: 'testValue'
         });
+
+     
 
         document.getElementById('contentDiv').innerHTML += wData;
     }
