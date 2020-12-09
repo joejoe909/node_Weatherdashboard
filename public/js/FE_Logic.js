@@ -6,7 +6,46 @@ $(document).ready(function () {
         const tmp = (temp_value - 273.15) * 1.8 + 32;
         return Number.parseFloat(tmp).toPrecision(4);
     }
+    //build five day forecast.
+    function buildFiveDay(data){
+        console.log("inFiveDay...");
+        console.log(data);
+        let tday = {
+            day:[
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                },
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                },
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                }
+            ]
+        }
 
+        console.log(tday.day[0]);
+        console.log(tday.day[1]);
+        console.log(tday.day[2]);
+        Handlebars.registerHelper('fiveday', function(){
+            return this.tday.day[0].date + this.tday.day[0].temp + this.tday.day[0].iconURL + this.tday.day[0].humidity + this.tday.day[0].uvIndex 
+        })
+    }
+
+
+    //Render Current day
     function renderData(data) {
         console.log(data)
 
@@ -33,6 +72,7 @@ $(document).ready(function () {
         document.getElementById('line2').innerHTML += "Temperature: " + tempF + " High: " + temp_maxF + " Low: " + temp_minF;
         document.getElementById('line3').innerHTML += "Humidity: " + humidity + "%";
         document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° " 
+        buildFiveDay(data);
     }
 
     function buildQueryURL(cityString) {
