@@ -64,3 +64,27 @@ some clean up from index.js
         '{{population}} {{timezone}}';
 
 //const template = Handlebars.compile(weather);
+
+
+
+//put this aside until we find a method to get text from our table
+    
+        //check if city name is in the history list if it is dont add the name
+        const cities = $("#tabelBody").contents().filter(function(){ 
+            return this.nodeType === 3;  //
+        });
+        
+        console.log("cities is type of: " + typeof(cities))
+        let found = false;
+        for(let i = 0; i < cities.length; i++)
+        {   
+            console.log("searching" + String(cities[i]))
+            if(String(cities[i].getElementById) === cityStr) found ===true;
+        }
+
+        if(!found){
+            const cty = '<tr>' + '<td id="' + cityStr + '">' + cityStr + '</td>' + '</tr>'
+            $('#tabelBody').prepend(cty);    
+        }else{
+            console.log("found!")
+        }
