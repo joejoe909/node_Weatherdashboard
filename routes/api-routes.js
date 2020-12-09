@@ -21,7 +21,11 @@ module.exports = (app)=>{
 
     app.get('/api/search/:city', async (req,res)=>{
         const city = req.params.city;
-        cityNames.unshift(city)
+        if(!cityNames.includes(city))
+        {
+            cityNames.pop();
+            cityNames.unshift(city);
+        }
         console.debug(city);
         const URL = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city + '&appid=' + process.env.OWK;
         let FDF, UV;

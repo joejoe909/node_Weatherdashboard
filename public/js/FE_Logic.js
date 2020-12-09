@@ -13,10 +13,12 @@ $(document).ready(function () {
         document.getElementById('imgspace').innerHTML = '';
         document.getElementById('line1').innerHTML = '';
         document.getElementById('line2').innerHTML = '';
+        document.getElementById('line3').innerHTML = '';
+        document.getElementById('line4').innerHTML = '';
 
         const { name, country, population, value, timezone } = data[0].city;
         const { temp, temp_max, temp_min, humidity } = data[0].list[0].main;
-        const { description, icon, main } = data[0].list[0].weather[0];
+        const { description, icon} = data[0].list[0].weather[0];
         const { deg, speed } = data[0].list[0].wind;
 
         const tempF = normalizeTemp(temp);
@@ -28,8 +30,9 @@ $(document).ready(function () {
 
         document.getElementById('line1').innerHTML += name + " " + country;
         document.getElementById('line1').appendChild(mainIcon);
-        document.getElementById('line2').innerHTML += "Temperature: " + tempF + " High:" + temp_maxF + " Low:" + temp_minF;
-
+        document.getElementById('line2').innerHTML += "Temperature: " + tempF + " High: " + temp_maxF + " Low: " + temp_minF;
+        document.getElementById('line3').innerHTML += "Humidity: " + humidity + "%";
+        document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° " 
     }
 
     function buildQueryURL(cityString) {
@@ -47,8 +50,30 @@ $(document).ready(function () {
     $("#searchBtn").on("click", function () {
         event.preventDefault();
         console.log('click');
-        let cityStr = $("#cityInpt").val();
-        console.log(cityStr);
+        const cityStr = $("#cityInpt").val();
+        console.log("searching " + cityStr);
+       
+        //check if city name is in the history list if it is dont add the name
+        const cities = $("#tabelBody").contents().filter(function(){ 
+            return this.nodeType === 3;  //
+        });
+        
+        console.log("cities is type of: " + typeof(cities))
+        let found = false;
+        for(let i = 0; i < cities.length; i++)
+        {   
+            console.log("searching" + String(cities[i]))
+            if(String(cities[i]) === cityStr) found ===true;
+        }
+
+        if(!found){
+            const cty = '<tr>' + '<td id="' + cityStr + '">' + cityStr + '</td>' + '</tr>'
+            $('#tabelBody').prepend(cty);    
+        }else{
+            console.log("found!")
+        }
+
+
         buildQueryURL(cityStr);
 
     });
