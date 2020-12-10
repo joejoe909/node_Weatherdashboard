@@ -1,6 +1,5 @@
 $(document).ready(function () {
     console.log("loaded FE_Logic.js file...")
-    Handlebars.registerPartial('weather', '{{weather}}');
 
     function normalizeTemp(temp_value) {
         const tmp = (temp_value - 273.15) * 1.8 + 32;
@@ -39,9 +38,7 @@ $(document).ready(function () {
         console.log(tday.day[0]);
         console.log(tday.day[1]);
         console.log(tday.day[2]);
-        Handlebars.registerHelper('fiveday', function(){
-            return this.tday.day[0].date + this.tday.day[0].temp + this.tday.day[0].iconURL + this.tday.day[0].humidity + this.tday.day[0].uvIndex 
-        })
+  
     }
 
 
@@ -57,7 +54,7 @@ $(document).ready(function () {
 
         const { name, country, population, value, timezone } = data[0].city;
         const { temp, temp_max, temp_min, humidity } = data[0].list[0].main;
-        const { description, icon} = data[0].list[0].weather[0];
+        const { description, icon } = data[0].list[0].weather[0];
         const { deg, speed } = data[0].list[0].wind;
 
         const tempF = normalizeTemp(temp);
@@ -71,7 +68,7 @@ $(document).ready(function () {
         document.getElementById('line1').appendChild(mainIcon);
         document.getElementById('line2').innerHTML += "Temperature: " + tempF + " High: " + temp_maxF + " Low: " + temp_minF;
         document.getElementById('line3').innerHTML += "Humidity: " + humidity + "%";
-        document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° " 
+        document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° "
         buildFiveDay(data);
     }
 

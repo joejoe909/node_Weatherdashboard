@@ -1,16 +1,15 @@
 const axios = require('axios');
-const { response } = require('express');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const router = express.Router();
 const chalk = require('chalk');
 const app = express();
-
 const hbs = exphbs.create({});
-hbs.getPartials().then(function(partials){ console.log("list of partials: " + partials)})
+hbs.getPartials().then(function (partials) {
+    console.log(partials); });
 
 app.engine('handlebars', hbs.engine);
-app.set('view enginer', 'handlebars');
+app.set('view engine', 'handlebars');
 
 
 module.exports = (app)=>{
@@ -50,18 +49,30 @@ module.exports = (app)=>{
         const wthr = [FDF , UV]
         console.log("did this happen?");
         res.send(wthr);
-       
     })
-
-   
-
+ 
     app.get('/', (req, res) => {
         res.render('home', {
-            hbout1: HBtestString,
             city: cityNames,
         });
     })
 
+
+    app.get('/test', (req, res)=>{        
+        const persons = [
+                {name: "Josh", age: 20},
+                {name: "Kahoona", age: 29 },
+                {name: "Bobster", age: 24 },
+
+            ]
+        
+
+        res.render('persons',{
+            pps: persons
+        })
+
+    });
+
  
-}
+};
 

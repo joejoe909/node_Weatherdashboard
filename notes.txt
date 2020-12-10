@@ -118,3 +118,20 @@ some clean up from index.js
         document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° " 
         buildFiveDay(data);
     }
+
+    //test route code 
+
+          const people = {
+            persons: [
+                "Nils", 
+                "Teddy",
+                "Nelson",
+                "samson"
+            ],
+        }
+
+        const pps = {
+            name:"Josh",
+            age:"27",
+            position: "pusher"
+        }
