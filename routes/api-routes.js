@@ -52,10 +52,15 @@ module.exports = (app)=>{
         const report = restruct(wthr); //Lets tame this bad boy.
         console.log(report);
 
-        res.render('home', {
-            weather: report
-        })
-        //res.send(wthr);
+        //the limitation with this design is that you can't render
+        //this response as such. Your output will simply be sent
+        //to the broswer console. From what I can tell there is not 
+        //much of way around this. You would have to use Vue.js etc..
+        // res.render('./partials/weather', {
+        //     weather: report
+        // })
+        //going to send the refind data back to the front end.... :\
+        res.send(wthr);
     })
  
     app.get('/', (req, res) => {
@@ -63,7 +68,6 @@ module.exports = (app)=>{
             city: cityNames,
         });
     })
-
 
     app.get('/test', (req, res)=>{        
         const persons = [
