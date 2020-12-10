@@ -1,75 +1,16 @@
 $(document).ready(function () {
     console.log("loaded FE_Logic.js file...")
 
-    function normalizeTemp(temp_value) {
-        const tmp = (temp_value - 273.15) * 1.8 + 32;
-        return Number.parseFloat(tmp).toPrecision(4);
-    }
+ 
     //build five day forecast.
     function buildFiveDay(data){
-        console.log("inFiveDay...");
-        console.log(data);
-        let tday = {
-            day:[
-                {
-                    date: "12-19-2020",
-                    temp: "78",
-                    iconURL: "01d",
-                    humidity: "78%",
-                    uvIndex: "2%"
-                },
-                {
-                    date: "12-19-2020",
-                    temp: "78",
-                    iconURL: "01d",
-                    humidity: "78%",
-                    uvIndex: "2%"
-                },
-                {
-                    date: "12-19-2020",
-                    temp: "78",
-                    iconURL: "01d",
-                    humidity: "78%",
-                    uvIndex: "2%"
-                }
-            ]
-        }
-
-        console.log(tday.day[0]);
-        console.log(tday.day[1]);
-        console.log(tday.day[2]);
-  
+ 
     }
 
 
     //Render Current day
     function renderData(data) {
-        console.log(data)
 
-        document.getElementById('imgspace').innerHTML = '';
-        document.getElementById('line1').innerHTML = '';
-        document.getElementById('line2').innerHTML = '';
-        document.getElementById('line3').innerHTML = '';
-        document.getElementById('line4').innerHTML = '';
-
-        const { name, country, population, value, timezone } = data[0].city;
-        const { temp, temp_max, temp_min, humidity } = data[0].list[0].main;
-        const { description, icon } = data[0].list[0].weather[0];
-        const { deg, speed } = data[0].list[0].wind;
-
-        const tempF = normalizeTemp(temp);
-        const temp_maxF = normalizeTemp(temp_max);
-        const temp_minF = normalizeTemp(temp_min);
-
-        const mainIcon = document.createElement("img");
-        mainIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + icon + '@2x.png')
-
-        document.getElementById('line1').innerHTML += name + " " + country;
-        document.getElementById('line1').appendChild(mainIcon);
-        document.getElementById('line2').innerHTML += "Temperature: " + tempF + " High: " + temp_maxF + " Low: " + temp_minF;
-        document.getElementById('line3').innerHTML += "Humidity: " + humidity + "%";
-        document.getElementById('line4').innerHTML += "Condition: " + description + ", windspeed: " + speed + " MPH, " + deg + "° "
-        buildFiveDay(data);
     }
 
     function buildQueryURL(cityString) {
@@ -78,8 +19,8 @@ $(document).ready(function () {
         $.get("/api/search/" + cityString)
             .then((data) => {
                 //console.log('rx response')
-                //console.log(data);
-                renderData(data)
+                console.log(data);
+                //renderData(data)
             })
     }
 

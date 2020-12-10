@@ -1,9 +1,11 @@
 <div class="col-8" id="output">
-   <div id="imgspace"></div>
-   <h5 id='line1'></h5> 
-   <h5 id='line2'></h5>
-   <h5 id='line3'></h5>
-   <h5 id='line4'></h5>
+   {{#each weather}}
+      <p>{{this}}</p>
+   {{/each}}
+   {{!-- <h5 id='line1'>{{report.name}}</h5> 
+   <h5 id='line2'>{{report.country}}</h5>
+   <h5 id='line3'>{{report.population}}</h5>
+   <h5 id='line4'>{{report.temp}}</h5> --}}
 </div>
-{{>fiveday}}
+
 

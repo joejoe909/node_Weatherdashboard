@@ -10,6 +10,7 @@ hbs.getPartials().then(function (partials) {
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+const restruct = require('../restructureData/restructureData');
 
 
 module.exports = (app)=>{
@@ -48,7 +49,13 @@ module.exports = (app)=>{
     
         const wthr = [FDF , UV]
         console.log("did this happen?");
-        res.send(wthr);
+        const report = restruct(wthr); //Lets tame this bad boy.
+        console.log(report);
+
+        res.render('home', {
+            weather: report
+        })
+        //res.send(wthr);
     })
  
     app.get('/', (req, res) => {
@@ -72,7 +79,6 @@ module.exports = (app)=>{
         })
 
     });
-
  
 };
 

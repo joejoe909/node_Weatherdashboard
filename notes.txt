@@ -135,3 +135,38 @@ some clean up from index.js
             age:"27",
             position: "pusher"
         }
+
+
+        //build buildFiveDay
+
+                console.log("inFiveDay...");
+        console.log(data);
+        let tday = {
+            day:[
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                },
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                },
+                {
+                    date: "12-19-2020",
+                    temp: "78",
+                    iconURL: "01d",
+                    humidity: "78%",
+                    uvIndex: "2%"
+                }
+            ]
+        }
+
+        console.log(tday.day[0]);
+        console.log(tday.day[1]);
+        console.log(tday.day[2]);
