@@ -59,8 +59,10 @@ module.exports = (app)=>{
         // res.render('./partials/weather', {
         //     weather: report
         // })
-        //going to send the refind data back to the front end.... :\
-        res.send(wthr);
+        //going to send the refind data back to the front end and use 
+        //a partial on the front end.... :\
+
+        res.send(report);
     })
  
     app.get('/', (req, res) => {

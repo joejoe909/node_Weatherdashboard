@@ -1,31 +1,30 @@
 $(document).ready(function () {
     console.log("loaded FE_Logic.js file...")
-
- 
     //build five day forecast.
     function buildFiveDay(data){
  
     }
 
-
     //Render Current day
-    function renderData(data) {
-
+    function renderData(data) 
+    {
+        console.log(data);
+        
     }
 
-    function buildQueryURL(cityString) {
+    function buildQueryURL(cityString) 
+    {
         console.log("rx in buildQueryURL: " + cityString)
         //call a ajax get on the back end or do a fetch...
         $.get("/api/search/" + cityString)
-            .then((data) => {
-                //console.log('rx response')
-                console.log(data);
-                //renderData(data)
+            .then((data) => {    
+                renderData(data)
             })
     }
 
     //Get City name on search
-    $("#searchBtn").on("click", function () {
+    $("#searchBtn").on("click", function () 
+    {
         event.preventDefault();
         console.log('click');
         const cityStr = $("#cityInpt").val();
