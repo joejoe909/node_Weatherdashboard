@@ -4,9 +4,11 @@ const exphbs = require('express-handlebars');
 const router = express.Router();
 const chalk = require('chalk');
 const app = express();
+
 const hbs = exphbs.create({});
+
 hbs.getPartials().then(function (partials) {
-    console.log(partials); });
+    console.log("this is the partials:" + String(partials)); });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -28,7 +30,7 @@ module.exports = (app)=>{
         }
         console.debug(city);
         const URL = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city + '&appid=' + process.env.OWK;
-        let FDF, UV;
+        let FDF, UV, UV_for;
         let LAT, LON;
         //get the Five Day Forecast (FDF)
         await Promise.all([
@@ -40,28 +42,24 @@ module.exports = (app)=>{
             })
         ]);       
         
-        const URLuv = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + LAT + "&lon=" + LON + '&appid=' + process.env.OWK;
+        const URLuv = "https://api.openweathermap.org/data/2.5/uvi?lat=" + LAT + "&lon=" + LON + '&appid=' + process.env.OWK;
         await Promise.all([ 
             axios.get(URLuv).then((response)=>{
                 UV = response.data
             })
         ]);
+
+        const URLuv_for = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + LAT + "&lon=" + LON + '&appid=' + process.env.OWK;
+        await Promise.all([ 
+            axios.get(URLuv_for).then((response)=>{
+                UV_for = response.data
+            })
+        ]);
     
-        const wthr = [FDF , UV]
+        const wthr = [FDF , UV, UV_for] //five day forecast, current UV index, five day forecast
         console.log("did this happen?");
         const report = restruct(wthr); //Lets tame this bad boy.
-        console.log(report);
-
-        //the limitation with this design is that you can't render
-        //this response as such. Your output will simply be sent
-        //to the broswer console. From what I can tell there is not 
-        //much of way around this. You would have to use Vue.js etc..
-        // res.render('./partials/weather', {
-        //     weather: report
-        // })
-        //going to send the refind data back to the front end and use 
-        //a partial on the front end.... :\
-
+         
         res.send(report);
     })
  

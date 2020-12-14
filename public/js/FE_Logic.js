@@ -1,15 +1,77 @@
 $(document).ready(function () {
     console.log("loaded FE_Logic.js file...")
-    //build five day forecast.
-    function buildFiveDay(data){
- 
+
+    function clearReport(){
+        $("#name").html("")
+        $("#temp").html("");
+        $("#description").html("");
+        $("#humidity").html("");
+        $("#windspeed").html("");
+        $("#uvIndex").html("");
+        $("5dayforecast").html("");   
+    }
+
+    function setUVbackground(value){
+        let h4 = $("<h4>");
+        console.log("uv value is " + value);
+        if(value < 3 ){
+            h4.attr("style", "background: green");
+        }else if(value < 6 ){
+            h4.attr("style", "background: yellow");
+        }else if(value < 8){
+            h4.attr("style", "background: orange");
+        }else{
+            h4.attr("style", "background: red");
+        }
+        h4.html("UV Index: " + value);
+        $("#uvIndex").append(h4);
+    }
+
+    function buildFDF(data){
+        console.log(data);
+        $("#5dayforecast").html("");
+        let cards = []
+        for(i=0; i <= 4; i++)
+        { 
+            let card = $("<div class='card'><div>");
+            card.attr("style", "padding: 10px;")
+            let {dt_text, description, humidity, icon, temp} = data.fiveDayFor[i];  
+            let dt = dt_text.slice(0,10);
+            let date = $("<h8>").html(dt); 
+            let icn = $("<img>");
+            icn.attr('src', 'https://openweathermap.org/img/wn/' + data.icon + '@2x.png')
+            let des = $("<h8>").html(description);
+            let tmp = $("<h8>").html("temp: " + temp + "°")
+            let hum = $("<h8>").html("humidity: " + humidity + "%");
+            card.append(date);
+            card.append(icn);
+            card.append(des);
+            card.append(tmp);
+            card.append(hum);
+            cards.push(card);
+        }
+
+        for(i=0; i < cards.length; i++)
+        {
+            $("#5dayforecast").append(cards[i]);
+        }  
     }
 
     //Render Current day
     function renderData(data) 
     {
-        console.log(data);
-        
+        //console.log(data);
+        clearReport(); //clear the div so we can write new data.
+        $("#name").append(data.name);
+        const iconImg = $('<img>');
+        iconImg.attr('src', 'https://openweathermap.org/img/wn/' + data.icon + '@2x.png');
+        $("#name").append(iconImg);
+        $("#description").append(data.description);
+        $("#temp").append("Temperature: " + data.temp + "° High " + data.temp_max + "° Low " + data.temp_min +"°");
+        $("#humidity").append("Humidity: " + data.humidity + "%");
+        $("#windspeed").append("Windspeed: " + data.speed + " MPH, Deg: " + data.deg + "°" )
+        setUVbackground(data.value);
+        buildFDF(data);
     }
 
     function buildQueryURL(cityString) 
@@ -58,8 +120,9 @@ $(document).ready(function () {
         cityString = $(this).text();
         cityString = cityString.trim()//cityString.replace(/\s/g, ''); // remove spaces introduced from back end        
         buildQueryURL(cityString);
-
     });
+
+    buildQueryURL("Las Vegas");
 
 
 });
