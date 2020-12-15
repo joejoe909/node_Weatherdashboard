@@ -17,7 +17,7 @@
 1. HTML,CSS and Javascript.
 
 ### API key configuration.
-###### If youw will be using this with your own API key you will have to get one issued to you via the openweathermap.org by creating an account. Once you have done that you will have to create a .env file inside of it simply create the OWK = <yourkey> variable.
+###### If youw will be using this with your own API key you will have to get one issued to you via the openweathermap.org by creating an account. Once you have done that you will have to create a .env file inside of it simply create the OWK = [yourkey] variable.
 
 
 
