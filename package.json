@@ -1,14 +1,14 @@
 {
-  "name": "Weather Dashboard",
+  "name": "weather_dashboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "An application that connects to the Open Weather API and displays the reuslts.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "Joe Farrish",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0",
