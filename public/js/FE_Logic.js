@@ -39,7 +39,7 @@ $(document).ready(function () {
             let dt = dt_text.slice(0,10);
             let date = $("<h8>").html(dt); 
             let icn = $("<img>");
-            icn.attr('src', 'https://openweathermap.org/img/wn/' + data.icon + '@2x.png')
+            icn.attr('src', 'https://openweathermap.org/img/wn/' + icon + '@2x.png')
             let des = $("<h8>").html(description);
             let tmp = $("<h8>").html("temp: " + temp + "°")
             let hum = $("<h8>").html("humidity: " + humidity + "%");
